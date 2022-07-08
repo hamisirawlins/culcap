@@ -1,4 +1,6 @@
+import 'package:culcap/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -29,9 +31,9 @@ class _LoginPageState extends State<LoginPage> {
                 height: size.height * 0.05,
               ),
               //Login Text
-              const Text(
+              Text(
                 'Welcome Back',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                style: GoogleFonts.amaticSc(fontSize: 50),
               ),
               SizedBox(
                 height: size.height * 0.01,
@@ -41,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.grey[100],
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(25)),
                   child: const Padding(
@@ -61,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.grey[100],
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(25)),
                   child: const Padding(
@@ -74,7 +76,46 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              //Login
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              //Login Button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Container(
+                  padding: EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    color: kSecondaryColor,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.015,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Don't Have An Account? ",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Sign Up",
+                    style: TextStyle(
+                        color: Colors.blue[800], fontWeight: FontWeight.bold),
+                  )
+                ],
+              )
             ],
           ),
         ),
