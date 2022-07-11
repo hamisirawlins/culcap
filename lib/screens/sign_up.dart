@@ -1,29 +1,39 @@
-import 'package:culcap/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'forgot_password.dart';
+import '../constants.dart';
 
-class LoginPage extends StatefulWidget {
-  //Functions
-  final VoidCallback showSignUp;
-  const LoginPage({Key? key, required this.showSignUp}) : super(key: key);
+class SignUp extends StatefulWidget {
+  final VoidCallback showLoginPage;
+  SignUp({Key? key, required this.showLoginPage}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpState extends State<SignUp> {
   //Controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   //Sign In Functionality
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
+  Future signUp() async {
+    if (passwordConfirmed()) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
+    }
+  }
+
+  bool passwordConfirmed() {
+    if (_passwordController.text.trim() ==
+        _confirmPasswordController.text.trim()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
@@ -31,9 +41,11 @@ class _LoginPageState extends State<LoginPage> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -55,15 +67,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   //Image
                   Image.asset(
-                    "assets/imgs/people.png",
-                    height: size.height * 0.28,
+                    "assets/imgs/dancing.png",
+                    height: size.height * 0.27,
                   ),
                   SizedBox(
                     height: size.height * 0.05,
                   ),
                   //Login Text
                   Text(
-                    'Welcome Back',
+                    'Welcome',
                     style: GoogleFonts.amaticSc(fontSize: 50),
                   ),
                   SizedBox(
@@ -89,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   SizedBox(
-                    height: size.height * 0.01,
+                    height: size.height * 0.015,
                   ),
                   //Password Textfield
                   Padding(
@@ -110,29 +122,27 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: size.height * 0.01,
                   ),
+                  //Confirm Password
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return ForgotPassword();
-                            }));
-                          },
-                          child: Text(
-                            'Forgot Password',
-                            style: TextStyle(
-                                color: Colors.blue[800],
-                                fontWeight: FontWeight.bold),
-                          ),
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: TextField(
+                          controller: _confirmPasswordController,
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Confirm Password'),
                         ),
-                      ],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -142,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: GestureDetector(
-                      onTap: signIn,
+                      onTap: signUp,
                       child: Container(
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
@@ -151,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         child: const Center(
                           child: Text(
-                            'Sign In',
+                            'Sign Up',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -168,13 +178,13 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Don't Have An Account? ",
+                        "Already Have An Account? ",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       GestureDetector(
-                        onTap: widget.showSignUp,
+                        onTap: widget.showLoginPage,
                         child: Text(
-                          "Sign Up",
+                          "Login",
                           style: TextStyle(
                               color: Colors.blue[800],
                               fontWeight: FontWeight.bold),
