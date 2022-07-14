@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,7 +25,12 @@ class _SignUpState extends State<SignUp> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
+      storeUser(_emailController.text.trim());
     }
+  }
+
+  Future storeUser(String email) async {
+    await FirebaseFirestore.instance.collection('users').add({'email': email});
   }
 
   bool passwordConfirmed() {
