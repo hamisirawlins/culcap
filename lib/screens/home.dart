@@ -12,6 +12,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<Widget> _pages = [
+    const Center(
+      child: Text('Home'),
+    ),
+    const Center(
+      child: Text('Search'),
+    ),
+    const Center(
+      child: Text('Profile'),
+    ),
+  ];
   final List _posts = [
     {
       "id": 1,
@@ -150,27 +161,26 @@ class _HomePageState extends State<HomePage> {
       "subtitle": "Zontrax"
     }
   ];
+
+  int _selectedIndex = 0;
+
+  void _navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemCount: _posts.length,
-              itemBuilder: (context, index) {
-                return ImageCard();
-              },
-            ),
-          ),
-        ],
-      ),
+      body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
             color: Colors.black,
-            borderRadius: BorderRadius.all(Radius.circular(100))),
+            borderRadius: BorderRadius.all(Radius.circular(60))),
+        height: size.height * 0.095,
         child: Padding(
           padding: const EdgeInsets.all(6.0),
           child: GNav(
@@ -179,9 +189,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
               activeColor: Colors.white,
               gap: 4,
-              onTabChange: ((value) {
-                print(value);
-              }),
+              onTabChange: _navigateBottomBar,
               tabs: const [
                 GButton(
                   icon: Icons.home,
