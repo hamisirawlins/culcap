@@ -9,11 +9,33 @@ class ImageCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            imageUrl,
-            fit: BoxFit.contain,
+        child: Container(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Container(
+              color: Colors.grey[300],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Image.asset(
+                    imageUrl,
+                    fit: BoxFit.contain,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: SizedBox(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'More',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ));
   }
