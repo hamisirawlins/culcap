@@ -7,19 +7,22 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard()),
-        Padding(padding: const EdgeInsets.all(8.0), child: ImageCard())
+      children: const [
+        ImageCard(
+          imageUrl: 'assets/imgs/pexels-aslhndogan-12571192.jpg',
+        ),
+        ImageCard(
+          imageUrl: 'assets/imgs/pexels-dominika-mazur-13234871.jpg',
+        ),
+        ImageCard(
+          imageUrl: 'assets/imgs/pexels-ivan-samkov-5676740.jpg',
+        ),
+        ImageCard(
+          imageUrl: 'assets/imgs/pexels-pixabay-267669.jpg',
+        ),
+        ImageCard(
+          imageUrl: 'assets/imgs/pexels-tim-mossholder-13187759.jpg',
+        ),
       ],
     );
   }
