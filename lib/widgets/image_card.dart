@@ -9,7 +9,7 @@ class ImageCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: size.height * 0.3,
-        color: kSecondaryColor,
+        color: Colors.amberAccent,
       ),
     );
   }
