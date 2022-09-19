@@ -11,17 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> _pages = [
-    const Center(
-      child: HomeTab(),
-    ),
-    const Center(
-      child: Text('Search'),
-    ),
-    const Center(
-      child: Text('Profile'),
-    ),
-  ];
+  //Set User
+  final user = FirebaseAuth.instance.currentUser!;
 
   //Navbar Setup
   int _selectedIndex = 0;
@@ -31,9 +22,31 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
+    //Pages
+    final List<Widget> _pages = [
+      const Center(
+        child: HomeTab(),
+      ),
+      const Center(
+        child: Text('Search'),
+      ),
+      Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text('Home Page, Signed In as ' + user.email!),
+          MaterialButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            color: Colors.amber[300],
+            child: Text('Sign Out'),
+          ),
+        ]),
+      ),
+    ];
+
+    //Screen Size Query
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -113,13 +126,3 @@ class BottomNavIcon extends StatelessWidget {
     );
   }
 }
-// child: Column(children: [
-//                   Text('Home Page, Signed In as ' + user.email!),
-//                   MaterialButton(
-//                     onPressed: () {
-//                       FirebaseAuth.instance.signOut();
-//                     },
-//                     color: Colors.red,
-//                     child: Text('Sign Out'),
-//                   ),
-//                 ]),
