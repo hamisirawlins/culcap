@@ -11,6 +11,7 @@ class GlassBox extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
       child: Container(
+        color: Colors.white,
         height: size.height * 0.115,
         padding: EdgeInsets.all(12),
         child: BackdropFilter(

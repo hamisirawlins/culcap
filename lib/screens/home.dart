@@ -122,7 +122,7 @@ class BottomNavIcon extends StatelessWidget {
           onPressed: pressed,
           icon: Icon(
             icon,
-            color: selected ? Colors.orange[200] : Colors.orange[800],
+            color: selected ? Colors.grey[500] : Colors.black,
           ),
         ),
       ],
