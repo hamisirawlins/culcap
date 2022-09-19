@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         extendBody: true,
-        body: _pages[_selectedIndex],
+        body: SafeArea(child: _pages[_selectedIndex]),
         bottomNavigationBar: GlassBox(
           child: BottomAppBar(
             elevation: 0,
