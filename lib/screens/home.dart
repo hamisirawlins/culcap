@@ -16,11 +16,6 @@ class _HomePageState extends State<HomePage> {
 
   //Navbar Setup
   int _selectedIndex = 0;
-  void _navigateBottomBar(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

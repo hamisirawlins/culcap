@@ -1,3 +1,4 @@
+import 'package:culcap/constants.dart';
 import 'package:flutter/material.dart';
 
 class ImageCard extends StatelessWidget {
@@ -11,9 +12,9 @@ class ImageCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(20),
             child: Container(
-              color: Colors.grey[300],
+              color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -21,17 +22,32 @@ class ImageCard extends StatelessWidget {
                     imageUrl,
                     fit: BoxFit.contain,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: SizedBox(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'More',
-                          style: TextStyle(color: Colors.grey[600]),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(
+                            left: 30, right: 15, top: 8, bottom: 8),
+                        child: Icon(
+                          Icons.favorite_border,
+                          color: kSecondaryColor,
                         ),
                       ),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: SizedBox(
+                          child: TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              'More',
+                              style: TextStyle(
+                                color: kSecondaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),

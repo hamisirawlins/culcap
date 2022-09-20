@@ -9,7 +9,7 @@ class GlassBox extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return ClipRRect(
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(2),
       child: Container(
         color: Colors.white,
         height: size.height * 0.115,
